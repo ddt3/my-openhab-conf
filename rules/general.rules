@@ -8,6 +8,8 @@ then
         sendCommand(KeukenPlaScene, 0)
         sendCommand(NosferatuS, OFF)
 	sendCommand(AllOff, OFF)
-	sendCommand(HubActivity,"PowerOff")
+	if(HubActivity.state != "PowerOff") {
+		sendCommand(HubActivity,"PowerOff")
+	}
 end
 
