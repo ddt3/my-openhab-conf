@@ -1,0 +1,9 @@
+number TafelZWScene	"TafelZWScene"
+number KeukenZWScene	"KeukenZWScene"
+number BedZWScene	"BedZWScene"
+number OverloopZWScene	"OverloopZWScene"
+Number TafelZWBattery	"TafelZWBattery"
+Number KeukenZWBattery	"KeukenZWBattery"
+Number OverloopZWBattery	"OverloopZWBattery"
+Number BedZWBattery	"BedZWBattery"
+

@@ -1,0 +1,67 @@
+// Overloop Schakelaar
+rule "Overloop Schakelaar"
+when
+        Item OverloopZWScene received update
+then
+      
+	switch(OverloopZWScene.state) {
+		case 11 : { }
+		case 12 : { 
+		}
+		case 13 : { 
+			sendCommand(OverloopReScene, 3)
+		}
+		case 14 : { }
+		case 15 : { }
+		case 16 : { }
+		case 21 : { 
+		}
+		case 22 : { 
+		}
+		case 23 : { 
+		}
+		case 24 : { }
+		case 25 : { }
+		case 26 : { }
+		case 31 : { 
+			if( OverloopLiScene.state > 0 ) {
+				sendCommand(OverloopLiScene, 0)
+			} else {
+				sendCommand(OverloopLiScene, 1)
+			}
+		}
+		case 32 : { }
+		case 33 : { 
+			if( OverloopLiScene.state != 2 ) {
+				sendCommand(OverloopLiScene, 2)
+			} else {
+				sendCommand(OverloopLiScene, 1)
+			}
+
+		}
+		case 34 : { }
+		case 35 : { }
+		case 36 : { }
+		case 41 : { 
+			if( OverloopReScene.state > 0 ) {
+				sendCommand(OverloopReScene, 0)
+			} else {
+				sendCommand(OverloopReScene, 1)
+			}
+		}
+		case 42 : { }
+		case 43 : { 
+		       if( OverloopReScene.state != 2 ) {
+				sendCommand(OverloopReScene, 2)
+			} else {
+				sendCommand(OverloopReScene, 1)
+			}
+
+		}
+		case 44 : { }
+		case 45 : { }
+		case 46 : { }
+		default : {  }
+        }
+
+end

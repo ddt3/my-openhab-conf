@@ -1,0 +1,33 @@
+rule "Voice control"
+when
+    Item VoiceCommand received command
+then
+    var String command = VoiceCommand.state.toString.toLowerCase
+    logInfo("Voice.Rec","VoiceCommand received "+command)
+    var Number newState = 100
+    newState = 100
+    // find new state, toggle otherwise (if possible)
+    if (command.contains("uit")|| command.contains("uitschakelen") || command.contains("stoppen")) {
+        newState = 0
+    } else if (command.contains("aan") || command.contains("normaal")|| command.contains("aanzetten") || command.contains("starten")) {
+        newState = 1
+    } else if (command.contains("fel") || command.contains("helder") || command.contains("groen") || command.contains("mozaieken")) {
+        newState = 2
+    }
+    logInfo("Voice.Rec", "Detected state is: "+newState)
+
+	
+    if (newState < 100) {
+	// find scene
+	var String SceneItem = null
+	if (command.contains("kamer") || command.contains ("woonkamer")) {
+	    sendCommand(KamerScene, newState)
+	} else if (command.contains("licht beneden") || command.contains("ligt beneden")) {
+	    sendCommand(TafelScene, newState)
+	    sendCommand(KamerScene, newState)
+	} else if (command.contains("tafel")) {
+	    sendCommand(TafelScene, newState)
+	} else if (command.contains("aanrecht") || command.contains("keuken")) {
+	    sendCommand(KeukenAanScene, newState)
+    }
+end

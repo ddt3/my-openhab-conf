@@ -1,0 +1,64 @@
+rule "Harmony Kamer Off"
+when
+        Item KamerHueSim changed from ON to OFF
+then
+	if( KamerScene.state > 0 ) {
+		sendCommand(KamerScene, 0)
+	}
+end
+
+rule "Harmony Kamer ON"
+when
+        Item KamerHueSim changed from OFF to ON
+then
+		sendCommand(KamerScene, 1)
+end
+
+rule "Harmony Tafel Off"
+when
+        Item TafelHueSim changed from ON to OFF
+then
+	if( KamerScene.state > 0 ) {
+		sendCommand(TafelScene, 0)
+	}
+end
+
+rule "Harmony Tafel ON"
+when
+        Item TafelHueSim changed from OFF to ON
+then
+		sendCommand(TafelScene, 1)
+end
+
+rule "Harmony KeukenAanScene Off"
+when
+        Item KeukenAanHueSim changed from ON to OFF
+then
+	if( KeukenAanScene.state > 0 ) {
+		sendCommand(KeukenAanScene, 0)
+	}
+end
+
+rule "Harmony KeukenAanScene ON"
+when
+        Item KeukenAanHueSim changed from OFF to ON
+then
+		sendCommand(KeukenAanScene, 1)
+end
+
+rule "Harmony Overloop links Off"
+when
+        Item OverloopLiHueSim changed from ON to OFF
+then
+	if( KamerScene.state > 0 ) {
+		sendCommand(OverloopLiScene, 0)
+	}
+end
+
+rule "Harmony Overloop links ON"
+when
+        Item OverloopLiHueSim changed from OFF to ON
+then
+		sendCommand(OverloopLiScene, 1)
+end
+

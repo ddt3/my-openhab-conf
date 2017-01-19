@@ -1,0 +1,159 @@
+var Timer otimer
+
+rule "Tafel scene"
+when
+        Item TafelScene received command
+then
+        switch(receivedCommand) {
+                case 1 :  { sendCommand(TafelKamerC, "73,81,37")
+			    sendCommand(TafelHueSim, ON)
+                            sendCommand(TafelRaamC, "73,81,37")}
+                case 2 :  { sendCommand(TafelKamerC, "84,47,100")
+                            sendCommand(TafelRaamC, "84,47,100")}
+                default : { sendCommand(TafelKamerC, OFF) 
+			    sendCommand(TafelHueSim, OFF)
+                            sendCommand(TafelRaamC, OFF) }
+        }
+end
+
+
+
+rule "Kamer scene"
+when
+        Item KamerScene received command
+then
+        var String zl
+        var String sl
+        var String lc
+        var Timer timer
+        switch(receivedCommand) {
+                case 1 :  { zl="0,0,50" sl="70,100,100" lc="89,100,100" sendCommand(KamerHueSim,ON) }
+                case 2 : { zl="0,0,50" sl="149,100,75" lc="168,100,100" }
+                default : { zl="OFF" sl="OFF" lc="OFF" sendCommand(KamerHueSim,OFF) }
+        }
+        if (receivedCommand < 3) {
+                sendCommand(ZonneLampC, zl)
+                sendCommand(SchemerLampC, sl)
+                sendCommand(LivingColorC, lc)
+        }
+end
+
+
+rule "Keuken Aanrecht Scene"
+when
+        Item KeukenAanScene received command
+then
+        switch(receivedCommand) {
+                case 1 :  {
+                        sendCommand(Keukenstrip, "40,86,100")
+			sendCommand(KeukenAanHueSim, ON)
+                }
+                case 2 :  {
+                        sendCommand(Keukenstrip, "225,24,100")
+                }
+                default : {
+                        sendCommand(Keukenstrip, OFF)
+			sendCommand(KeukenAanHueSim, OFF)
+                }
+        }
+end
+rule "Keuken Plafond Scene"
+when
+        Item KeukenPlaScene received command
+then
+        switch(receivedCommand) {
+                case 1 :  {
+                        sendCommand(KeukenC, "89,100,60")
+                }
+                case 2 :  {
+                        sendCommand(KeukenC, "168,100,100")
+                }
+                default : {
+                        sendCommand(KeukenC, OFF)
+                }
+        }
+end
+
+rule "Overloop Links scene"
+when
+        Item OverloopLiScene received command
+then
+        if receivedCommand != 3 {
+                if(otimer!=null) {
+                        otimer.cancel
+                        otimer = null
+                }
+        }
+        switch(receivedCommand) {
+        case 1 :  {
+                sendCommand(OverloopLiC, "0,0,50")
+		sendCommand(OverloopLiHueSim, ON)
+        }
+        case 2 :  {
+                sendCommand(OverloopLiC, "0,0,100")
+        }
+        case 3: {
+                sendCommand(OverloopLiC, "0,0,20")
+        }
+        default : {
+                sendCommand(OverloopLiC, OFF)
+		sendCommand(OverloopLiHueSim, OFF)
+        }
+}
+
+end
+ 
+rule "Overloop Rechts scene"
+when
+        Item OverloopReScene received command
+then
+        if(otimer!=null) {
+                otimer.cancel
+                otimer = null
+        }
+        switch(receivedCommand) {
+        case 1 :  {
+                sendCommand(OverloopReC, "0,0,50")
+        }
+        case 2 :  {
+                sendCommand(OverloopReC, "0,0,100")
+        }
+        case 3: {
+                sendCommand(OverloopLiScene,3)
+                sendCommand(OverloopReC, "0,0,10")
+                otimer = createTimer(now.plusSeconds(30)) [|
+                        sendCommand(OverloopLiScene,0)
+                        sendCommand(OverloopReScene,0)
+                ]
+        }
+        default : {
+                sendCommand(OverloopReC, OFF)
+        }
+}
+
+end
+rule "Bed scene"
+when
+        Item BedScene received command
+then
+        switch(receivedCommand) {
+                case 1 :  { sendCommand(BedLampC, "0,0,33")}
+                case 2 :  { sendCommand(BedLampC, "0,0,66")}
+                case 3 :  { sendCommand(BedLampC, "0,0,100")}
+                default : { sendCommand(BedLampC, OFF) }
+        }
+end
+
+rule "Tafel lamp uit aan"
+when
+        Item SchemerLampC received update
+then
+        if (SchemerLampC == "81,56,100" ) {
+		switch(KamerScene) {
+			case 1 :  { sendCommand(KamerScene, 1) }
+			case 2 :  { sendCommand(KamerScene, 2) }
+			default : { sendCommand(KamerScene, 0) }
+			}
+	}
+
+end

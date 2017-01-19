@@ -1,0 +1,13 @@
+rule "Alles Uit"
+when
+        Item AllOff received command ON
+then
+        sendCommand(TafelScene, 0)
+        sendCommand(KamerScene, 0)
+        sendCommand(KeukenAanScene, 0)
+        sendCommand(KeukenPlaScene, 0)
+        sendCommand(NosferatuS, OFF)
+	sendCommand(AllOff, OFF)
+	sendCommand(HubActivity,"PowerOff")
+end
+

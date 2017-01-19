@@ -1,0 +1,15 @@
+Group   TafelC  "Tafel Lampen"
+Number  KamerScene      "KamerScene"
+Number  BedScene        "BedScene"
+Number  BuitenScene     "BuitenScene"
+Number  TafelScene      "TafelScene" 
+Number  KeukenAanScene  "KeukenAanScene"
+Number  KeukenPlaScene  "KeukenPlaScene"
+Number  OverloopLiScene "OverloopLiScene"
+Number  OverloopReScene "OverloopReScene"
+
+Number  TafelZWScene      "TafelZWScene" 
+Number  KeukenZWScene      "KeukenZWScene" 
+Number  OverloopZWScene   "OverloopZWScene" 
+Number  BedZWScene        "BedZWScene" 
+

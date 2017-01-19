@@ -1,0 +1,80 @@
+// Tafel Schakelaar
+rule "Tafel Schakelaar"
+when
+        Item TafelZWScene received update
+then
+      
+	switch(TafelZWScene.state) {
+		case 11 : { }
+		case 12 : { 
+			if( BuitenC.state == ON ) {
+				sendCommand(BuitenS, OFF)
+			} else {
+				sendCommand(BuitenS, ON)
+			}
+		}
+		case 13 : { }
+		case 14 : { }
+		case 15 : { }
+		case 16 : { }
+		case 21 : { 
+			if( OverloopReScene.state > 0 ) {
+				sendCommand(OverloopReScene, 0)
+			} else {
+				sendCommand(OverloopReScene, 1)
+			}
+		}
+		case 22 : { 
+			if( KeukenAanScene.state > 0 ) {
+				sendCommand(KeukenAanScene, 0)
+			} else {
+				sendCommand(KeukenAanScene, 1)
+			}
+
+		}
+		case 23 : { 
+			sendCommand(AllOff, ON)
+		}
+		case 24 : { }
+		case 25 : { }
+		case 26 : { }
+		case 31 : { 
+			if( TafelScene.state > 0 ) {
+				sendCommand(TafelScene, 0)
+			} else {
+				sendCommand(TafelScene, 1)
+			}
+		}
+		case 32 : { }
+		case 33 : { 
+			if( TafelScene.state != 2 ) {
+				sendCommand(TafelScene, 2)
+			} else {
+				sendCommand(TafelScene, 1)
+			}
+		}
+		case 34 : { }
+		case 35 : { }
+		case 16 : { }
+		case 41 : { 
+		        if( KamerScene.state > 0 ) {
+				sendCommand(KamerScene, 0)
+			} else {
+				sendCommand(KamerScene, 1)
+			}
+		}
+		case 42 : { }
+		case 43 : { 
+			if( KamerScene.state != 2 ) {
+				sendCommand(KamerScene, 2)
+			} else {
+				sendCommand(KamerScene, 1)
+			}
+		}
+		case 44 : { }
+		case 45 : { }
+		case 46 : { }
+		default : {  }
+        }
+
+end

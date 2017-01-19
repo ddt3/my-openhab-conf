@@ -1,0 +1,76 @@
+// Bed Schakelaar
+rule "Bed Schakelaar"
+when
+        Item BedZWScene received update
+then
+      
+	switch(BedZWScene.state) {
+		case 11 : { 
+                        if( OverloopLiScene.state > 0 ) {
+                                sendCommand(OverloopLiScene, 0)
+                        } else {
+                                sendCommand(OverloopLiScene, 1)
+                        }
+		}
+		case 12 : { 
+		}
+		case 13 : { }
+		case 14 : { }
+		case 15 : { }
+		case 16 : { }
+		case 21 : { 
+                        if( OverloopReScene.state > 0 ) {
+                                sendCommand(OverloopReScene, 0)
+                        } else {
+                                sendCommand(OverloopReScene, 1)
+                        }
+                }
+		case 22 : { 
+		}
+		case 23 : { 
+		}
+		case 24 : { }
+		case 25 : { }
+		case 26 : { }
+		case 31 : { 
+			if( BedScene.state > 0 ) {
+				sendCommand(BedScene, 0)
+			} else {
+				sendCommand(BedScene, 1)
+			}
+
+		}
+		case 32 : { }
+		case 33 : { 
+			if( BedScene.state != 2 ) {
+				sendCommand(BedScene, 2)
+			} else {
+				sendCommand(BedScene, 1)
+			}
+
+		}
+		case 34 : { }
+		case 35 : { }
+		case 36 : { }
+		case 41 : { 
+			if( BedScene.state > 0 ) {
+				sendCommand(BedScene, 0)
+			} else {
+				sendCommand(BedScene, 1)
+			}
+		}
+		case 42 : { }
+		case 43 : { 
+			if( BedScene.state != 2 ) {
+				sendCommand(BedScene, 2)
+			} else {
+				sendCommand(BedScene, 1)
+			}
+		}
+		case 44 : { }
+		case 45 : { }
+		case 46 : { }
+		default : {  }
+        }
+
+end
