@@ -4,8 +4,7 @@ sitemap default label="Thuis"
                 Switch item=KamerScene label="Kamer" icon="bank" mappings=[ 0="Uit", 1="[  H  ]", 2="[  G  ]" ]
                 Switch item=TafelScene label="Tafel" icon="table" mappings=[0="Uit", 1="[  N  ]", 2="[  F  ]"]
                 Switch item=KeukenAanScene label="Aanrecht" icon="kitchen" mappings=[0="Uit", 1="[  N  ]", 2="[  F  ]"]
-                Switch item=KeukenPlaScene label="Plafond" icon="kitchen" mappings=[0="Uit", 1="[  N  ]", 2="[  F  ]"]
-		Slider item=NosferatuS label="NosferatuS"
+                Switch item=BelMode label="Bel" icon="bell" mappings=[ 0="[ B ]", 1="[  L  ]", 2="[B+L]" ]
                 Switch item=AllOff
         }
         Frame label="Boven" {
@@ -15,6 +14,8 @@ sitemap default label="Thuis"
 		Slider item=Mika label="Mika"
         }
         Group label="Informatie" icon="settings" {
+                Switch item=KeukenPlaScene label="Plafond" icon="kitchen" mappings=[0="Uit", 1="[  N  ]", 2="[  F  ]"]
+		Slider item=NosferatuS label="NosferatuS"
                 Frame label="Data" {
 			Text item=TafelZWBattery	icon="battery"	label="Tafel Schakelaar  [%d %%]"
 			Text item=KeukenZWBattery	icon="battery"	label="Keuken Schakelaar  [%d %%]"
