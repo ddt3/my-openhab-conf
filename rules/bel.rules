@@ -1,0 +1,29 @@
+rule "Aangebeld"
+when
+    Item BelKnop changed from OFF to ON
+then
+    switch(BelMode.state) {
+	case 1 : {
+	    sendNotification("dries.dokter@gmail.com", "Iemand drukte de bel")
+	    sendCommand(LivingAlert, "SELECT")
+	    sendCommand(SchemerAlert, "SELECT")
+	    sendCommand(TKamerAlert, "SELECT")
+	    sendCommand(TRaamrAlert, "SELECT")
+	}
+	case 2 : {
+	    sendCommand(LivingAlert, "SELECT")
+	    sendCommand(SchemerAlert, "SELECT")
+	    sendCommand(TKamerAlert, "SELECT")
+	    sendCommand(TRaamrAlert, "SELECT")
+	    sendNotification("dries.dokter@gmail.com", "Iemand drukte de bel")
+	    sendCommand(BelKnop, OFF)
+	    sendCommand(Bel, OFF)
+	    sendCommand(Bel, ON)
+ 	}
+	default : { 
+	    sendNotification("dries.dokter@gmail.com", "Iemand drukte de bel")
+	    sendCommand(BelKnop, OFF)
+	    sendCommand(Bel, OFF)
+	    sendCommand(Bel, ON)
+	}
+end
