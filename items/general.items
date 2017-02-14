@@ -1,3 +1,2 @@
-Switch  TestSW  "Test Switch"
 Switch  AllOff  "Alles uit"
 Number BelMode "Bel Modus"
