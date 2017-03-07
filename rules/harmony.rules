@@ -1,6 +1,7 @@
+//-----------------------Kamer-----------------------------------------
 rule "Harmony Kamer Off"
 when
-        Item KamerHueSim changed from ON to OFF
+        Item KamerHueSim received command OFF
 then
 	if( KamerScene.state > 0 ) {
 		sendCommand(KamerScene, 0)
@@ -9,30 +10,36 @@ end
 
 rule "Harmony Kamer ON"
 when
-        Item KamerHueSim changed from OFF to ON
+        Item KamerHueSim received command ON
 then
+	if ( KamerScene.state != 1) {
 		sendCommand(KamerScene, 1)
+	}
 end
+//-----------------------TAFEL-----------------------------------------
 
 rule "Harmony Tafel Off"
 when
-        Item TafelHueSim changed from ON to OFF
+        Item TafelHueSim received command OFF
 then
-	if( KamerScene.state > 0 ) {
+	if( TafelScene.state > 0 ) {
 		sendCommand(TafelScene, 0)
 	}
 end
 
 rule "Harmony Tafel ON"
 when
-        Item TafelHueSim changed from OFF to ON
+        Item TafelHueSim received command ON 
 then
+	if( TafelScene.state != 1 ) {
 		sendCommand(TafelScene, 1)
+	}
 end
 
+//-----------------------Keuken----------------------------------------
 rule "Harmony KeukenAanScene Off"
 when
-        Item KeukenAanHueSim changed from ON to OFF
+        Item KeukenAanHueSim received command OFF
 then
 	if( KeukenAanScene.state > 0 ) {
 		sendCommand(KeukenAanScene, 0)
@@ -41,24 +48,29 @@ end
 
 rule "Harmony KeukenAanScene ON"
 when
-        Item KeukenAanHueSim changed from OFF to ON
+        Item KeukenAanHueSim received command ON
 then
+	if( KeukenAanScene.state  != 1 ) {
 		sendCommand(KeukenAanScene, 1)
+	}
 end
 
+//-----------------------Overloop--------------------------------------
 rule "Harmony Overloop links Off"
 when
-        Item OverloopLiHueSim changed from ON to OFF
+        Item OverloopLiHueSim received command OFF
 then
-	if( KamerScene.state > 0 ) {
+	if( OverloopLiScene.state > 0 ) {
 		sendCommand(OverloopLiScene, 0)
 	}
 end
 
 rule "Harmony Overloop links ON"
 when
-        Item OverloopLiHueSim changed from OFF to ON
+        Item OverloopLiHueSim received command ON
 then
+	if( OverloopLiScene.state != 1 ) {
 		sendCommand(OverloopLiScene, 1)
+	}
 end
 

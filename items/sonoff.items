@@ -2,5 +2,5 @@ Switch Bel  "Deurbel"
 { mqtt=">[oh2:cmnd/sonoff-bel/power:command:*:MAP(sonoff.map)],
             <[oh2:stat/sonoff-bel/POWER:state:default]" }
 Switch BelKnop  "Deurbel Knop"
-{ mqtt=">[oh2:cmnd/Klik/power:command:*:default],
-            <[oh2:cmnd/Klik/POWER:state:default]" }
+{ mqtt=">[oh2:cmnd/Klik/power1:command:*:default],
+            <[oh2:cmnd/Klik/POWER1:state:default]" }

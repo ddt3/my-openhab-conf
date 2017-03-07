@@ -1,7 +1,7 @@
-Switch  KamerHueSim     "Kamer" [ "Switchable" ]
-Switch  TafelHueSim     "Tafel" [ "Switchable" ]
-Switch  KeukenAanHueSim  "Aanrecht" [ "Switchable" ]
-Switch  OverloopLiHueSim  "Aanrecht" [ "Switchable" ]
+Switch  KamerHueSim     "Living" [ "Switchable" ]
+Switch  TafelHueSim     "Table" [ "Switchable" ]
+Switch  KeukenAanHueSim  "Kitchen" [ "Switchable" ]
+Switch  OverloopLiHueSim  "Upstairs" [ "Switchable" ]
 Group GroupAlert
 String TRaamrAlert "TRaamrAlert" (GroupALert)
 String TKamerAlert "TKamerAlert" (GroupALert)
