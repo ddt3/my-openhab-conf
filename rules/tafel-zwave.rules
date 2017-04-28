@@ -5,7 +5,13 @@ when
 then
       
 	switch(TafelZWScene.state) {
-		case 11 : { }
+		case 11 : { 
+			if( Hal.state == ON ) {
+				sendCommand(Hal, OFF)
+			} else {
+				sendCommand(Hal, ON)
+			}
+		}
 		case 12 : { 
 			if( BuitenC.state == ON ) {
 				sendCommand(BuitenS, OFF)
