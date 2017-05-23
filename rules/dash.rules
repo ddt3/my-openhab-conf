@@ -1,0 +1,10 @@
+rule "Dash button pressed"
+    when
+        Channel "amazondashbutton:dashbutton:50-f5-da-b9-b6-5e:press" triggered
+    then
+	if( TafelScene.state > 0 ) {
+		sendCommand(TafelScene, 0)
+	} else {
+		sendCommand(TafelScene, 1)
+	}
+end

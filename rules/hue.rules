@@ -28,7 +28,7 @@ then
         var Timer timer
         switch(receivedCommand) {
                 case 1 :  { zl="0,0,50" sl="70,100,100" lc="89,100,100" sendCommand(KamerHueSim,ON) }
-                case 2 : { zl="0,0,50" sl="149,100,75" lc="168,100,100" }
+                case 2 :  { zl="0,0,50" sl="OFF" lc="89,100,100" sendCommand(KamerHueSim,ON) }
                 default : { zl="OFF" sl="OFF" lc="OFF" sendCommand(KamerHueSim,OFF) }
         }
         if (receivedCommand < 3) {

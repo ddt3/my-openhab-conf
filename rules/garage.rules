@@ -17,11 +17,14 @@ when
 then 
 	if (GarageOpen.state == ON && GarageDicht.state == OFF) {
 		postUpdate(GarageStatus, "Open")
+		sendCommand(TafelRaamC, "360,100,50")
 	}
 	if (GarageOpen.state == OFF && GarageDicht.state == OFF) {
 		postUpdate(GarageStatus, "Beweegt")
+		sendCommand(TafelRaamC, "360,100,50")
 	}
 	if (GarageOpen.state == OFF && GarageDicht.state == ON) {
 		postUpdate(GarageStatus, "Dicht")
+		sendCommand(TafelScene, TafelScene.state)
 	}
 end
